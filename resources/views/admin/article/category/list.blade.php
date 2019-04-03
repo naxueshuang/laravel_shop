@@ -29,16 +29,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-success" href="/admin/article/category/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger" href="/admin/article/category/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($list))
+                    @foreach($list as $key => $val)
+                        <tr>
+                            <td>{{$val['id']}}</td>
+                            <td>{{$val['cate_name']}}</td>
+                            <td>{{$val['cate_desc']}}</td>
+                            <td>{{$val['cate_order']}}</td>
+                            <td>
+                                <a class="btn btn-sm btn-success" href="/admin/article/category/edit/{{$val['id']}}">编辑</a>
+                                <a class="btn btn-sm btn-danger" href="/admin/article/category/del/{{$val['id']}}">删除</a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

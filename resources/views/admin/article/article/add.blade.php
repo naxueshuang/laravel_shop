@@ -33,14 +33,18 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/article/store" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="admin_id" value="{{$user_id}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类</label>
                     <div class="col-sm-6">
                         <select class="form-control" id="cate_id">
-                            <option value="1">首页banner</option>
+                        @if(!empty($category))
+                            @foreach($category as $cate)
+                                <option name="cate_id" value="{{$cate['id']}}">{{$cate['cate_name']}}</option>
+                            @endforeach
+                        @endif
                         </select>
                     </div>
                 </div>

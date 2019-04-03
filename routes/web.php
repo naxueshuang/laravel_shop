@@ -222,4 +222,89 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
      Route::get('category/del/{id}','Admin\CategoryController@del')->name('admin.category.del');
 
      /*#############################[商品分类相关]#############################*/
+
+     /*#############################[文章分类相关]#############################*/
+     //文章分类列表操作
+     Route::get('article/category/list','Admin\ArticleCategoryController@list')->name('admin.article.category.list');
+
+     //文章分类添加
+     Route::get('article/category/add','Admin\ArticleCategoryController@add')->name('admin.article.category.add');
+
+     //文章分类执行添加
+     Route::post('article/category/store','Admin\ArticleCategoryController@store')->name('admin.article.category.store');
+
+     //文章分类删除操作
+     Route::get('article/category/del/{id}','Admin\ArticleCategoryController@del')->name('admin.article.category.del');
+
+     //文章分类编辑
+     Route::get('article/category/edit/{id}','Admin\ArticleCategoryController@edit')->name('admin.article.category.edit');
+
+     //文章分类执行编辑
+     Route::post('article/category/save','Admin\ArticleCategoryController@doEdit')->name('admin.article.category.save');
+
+     /*#############################[文章分类相关]#############################*/
+
+     /*#############################[文章相关]#############################*/
+     //文章列表
+     Route::get('article/list','Admin\ArticleController@list')->name('admin.article.article.list');
+
+     //文章添加页面
+     Route::get('article/add','Admin\ArticleController@add')->name('admin.article.article.add');
+
+     //文章执行添加
+     Route::post('article/store','Admin\ArticleController@store')->name('admin.article.store');
+
+      //文章编辑
+     Route::get('article/edit/{id}','Admin\ArticleController@edit')->name('admin.article.edit');
+
+     //文章执行编辑
+     Route::post('article/save','Admin\ArticleController@doEdit')->name('admin.article.save');
+
+     //文章分类删除操作
+     Route::get('article/del/{id}','Admin\ArticleController@del')->name('admin.article.del');
+
+     /*#############################[文章相关]#############################*/
+
+     /*#############################[广告相关]#############################*/
+     //广告位列表
+     Route::get('position/list','Admin\AdPositionController@list')->name('admin.position.list');
+
+     //广告位添加页面
+     Route::get('position/add','Admin\AdPositionController@add')->name('admin.position.add');
+
+     //广告位执行添加
+     Route::post('position/store','Admin\AdPositionController@store')->name('admin.position.store');
+
+      //广告位编辑
+     Route::get('position/edit/{id}','Admin\AdPositionController@edit')->name('admin.position.edit');
+
+     //广告位执行编辑
+     Route::post('position/save','Admin\AdPositionController@doEdit')->name('admin.position.save');
+
+     //广告位删除操作
+     Route::get('position/del/{id}','Admin\AdPositionController@del')->name('admin.position.del');
+
+     /*#############################[广告位相关]#############################*/
+
+
+     /*#############################[广告列表相关]#############################*/
+     //广告列表
+     Route::get('ad/list','Admin\AdController@list')->name('admin.ad.list');
+
+     //广告添加页面
+     Route::get('ad/add','Admin\AdController@add')->name('admin.ad.add');
+
+     //广告执行添加
+     Route::post('ad/store','Admin\AdController@store')->name('admin.ad.store');
+
+      //广告编辑
+     Route::get('ad/edit/{id}','Admin\AdController@edit')->name('admin.ad.edit');
+
+     //广告执行编辑
+     Route::post('ad/save','Admin\AdController@doEdit')->name('admin.ad.save');
+
+     //广告删除操作
+     Route::get('ad/del/{id}','Admin\AdController@del')->name('admin.ad.del');
+
+     /*#############################[广告列表相关]#############################*/
 });

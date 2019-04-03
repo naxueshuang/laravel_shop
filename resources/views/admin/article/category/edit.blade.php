@@ -33,26 +33,26 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/article/category/save" method="post">
                 {{csrf_field()}}
-                <input type="hidden" name="id">
+                <input type="hidden" name="id" value="{{$info->id}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章分类名称" class="form-control" name="cate_name" value="" />
+                        <input type="text" placeholder="文章分类名称" class="form-control" name="cate_name" value="{{$info->cate_name}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类描述</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="cate_desc"></textarea>
+                        <textarea class="form-control" rows="3" name="cate_desc">{{$info->cate_order}}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">文章分类排序</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章分类排序" class="form-control" name="cate_order" value="" />
+                        <input type="text" placeholder="文章分类排序" class="form-control" name="cate_order" value="{{$info->cate_order}}" />
                     </div>
                 </div>
 

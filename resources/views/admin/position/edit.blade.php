@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-文章分类添加')
+@section('title','管理后台-广告位编辑')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 文章分类添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 广告位编辑 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -29,29 +29,23 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">文章分类添加表单</h4>
+            <h4 class="panel-title">广告位编辑表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/article/category/store" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/position/save" method="post">
                 {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$info->id}}">
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">文章分类名称</label>
+                    <label class="col-sm-3 control-label">广告位名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="文章分类名称" class="form-control" name="cate_name" value="" />
+                        <input type="text" placeholder="广告名称" class="form-control" name="position_name" value="{{$info->position_name}}" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">文章分类描述</label>
+                    <label class="col-sm-3 control-label">广告位描述</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="cate_desc"></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">文章分类排序</label>
-                    <div class="col-sm-6">
-                        <input type="text" placeholder="文章分类排序" class="form-control" name="cate_order" value="{{rand(1,100)}}" />
+                        <textarea class="form-control" rows="3" name="position_desc">{{$info->position_desc}}</textarea>
                     </div>
                 </div>
 
@@ -71,10 +65,10 @@
 
             $("#btn-save").click(function(){
 
-                var cate_name = $("input[name=cate_name]").val();
+                var position_name = $("input[name=position_name]").val();
 
-                if(cate_name == ''){
-                    $("#error_msg").text('文章分类名称不能为空');
+                if(position_name == ''){
+                    $("#error_msg").text('广告位名称不能为空');
                     $(".alert-danger").show();
                     return false;
                 }

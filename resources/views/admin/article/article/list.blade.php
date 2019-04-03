@@ -31,20 +31,30 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-success" href="/admin/article/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger" href="/admin/article/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($list))
+                        @foreach($list as $article)
+                        <tr>
+                            <td>{{$article->id}}</td>
+                            <td>{{$article->cate_name}}</td>
+                            <td>{{$article->title}}</td>
+                            <td>{{$article->publish_at}}</td>
+                            <td>{{$article->clicks}}</td>
+                            <td>
+                                @if($article->status == 1) 待审核
+                                @elseif($article->status == 2) 审核
+                                @else 已发布
+                                @endif
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-success" href="/admin/article/edit/{{$article->id}}">编辑</a>
+                                <a class="btn btn-sm btn-danger" href="/admin/article/del/{{$article->id}}">删除</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
+                {{$list->links()}}
             </div><!-- table-responsive -->
         </div>
     </div>
