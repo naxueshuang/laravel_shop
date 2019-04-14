@@ -20,23 +20,23 @@
                 <table class="table table-primary  mb30">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>属性名称</th>
-                        <th>状态</th>
-                        <th class="col-md-3">操作</th>
+                        <th class="col-md-1">ID</th>
+                        <th class="col-md-3">属性名称</th>
+                        <th class="col-md-3">状态</th>
+                        <th class="col-md-5">操作</th>
                     </tr>
                     </thead>
                     <tbody>
                     @if(!empty($list))
-                    @foreach($list as $key=>$type)
+                    @foreach($list as $key => $type)
                     <tr>
                         <td>{{$type['id']}}</td>
                         <td>{{$type['type_name']}}</td>
-                        <td >{{$type['status'] == 1 ? '可用' : '禁用' }}</td>
+                        <td>{{$type['status'] == 1 ? '可用' : '禁用'}}</td>
                         <td class="col-md-3">
-                            <a class="btn btn-sm btn-success" >查看属性</a>&nbsp;
-                            <a class="btn btn-sm btn-warning" href="/admin/goods/type/edit/{{$type['id']}}">编辑</a>&nbsp;
-                            <a class="btn btn-sm btn-danger" href="/admin/goods/type/del/{{$type['id']}}">删除</a>&nbsp;
+                             <a class="btn btn-sm btn-success" href="/admin/goods/attr/list/{{$type['id']}}">查看属性</a>&nbsp;&nbsp;
+                            <a class="btn btn-sm btn-warning" href="/admin/goods/type/edit/{{$type['id']}}">编辑</a>&nbsp;&nbsp;
+                            <a class="btn btn-sm btn-danger" href="/admin/goods/type/del/{{$type['id']}}">删除</a>
                         </td>
                     </tr>
                     @endforeach

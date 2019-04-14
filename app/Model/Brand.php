@@ -7,14 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     //
+    const
+    	USE_ABLE = 1,//可用
+    	USE_DISABLE = 2,//不可用
+    	ENS = true;
 	protected $table = 'jy_brand';
 
 	public $timestamps = false;
 
     //获取品牌列表数据
-    public static function getList()
+    public static function getList($where=[])
 	{
-		return $list = self::get()->toArray();
+		return self::where($where)->get()->toArray();
 	}
 
 	//获取品牌详情

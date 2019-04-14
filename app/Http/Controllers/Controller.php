@@ -11,6 +11,11 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    const
+        PAGE_SIZE = 2,
+              END = TRUE;
+
+
     //删除_token
     public function delToken($params)
     {
@@ -38,19 +43,46 @@ class Controller extends BaseController
     	}
 
     	return $object->save();
+    } 
+
+    //保存数据并且获取id，单条
+    public function storeDataGetId($object,$params)
+    {  
+        return $object->insertGetId($params);
+    }
+    
+    public function storeDataMany($object,$params)
+    {
+        return $object->insert($params);
     }
 
     //获取属性 执行修改的操作
     public function getDataInfo($object,$id,$key="id")
     {
     	if(empty($id)){
-
+ 
     		return false;
     	}
 
     	$info = $object->where($key,$id)->first();
 
     	return $info;
+    }
+
+    //没有分页的数据列表
+    public function getDataList($object,$where = [])
+    {
+        $list = $object->where($where)->get()->toArray();
+
+        return $list;
+    }
+
+    public function getPageList($object,$where=[])
+    {
+        $list = $object->where($where)
+                ->paginate(self::PAGE_SIZE);
+
+        return $list;
     }
 
     //删除公共方法

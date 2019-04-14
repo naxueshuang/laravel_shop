@@ -52,5 +52,9 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "optimize-autoloader": true
-    }
+    },
+    "repositories": [
+                {"type": "composer", "url": "https://packagist.phpcomposer.com"},
+                {"packagist": false}
+            ]
 }

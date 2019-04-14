@@ -152,5 +152,11 @@ class ToolsAdmin
 
 		return $urls;
 	}
+
+	//生成随机货号
+	public static function buildGoodsSn($string = 16)
+	{
+		return "JY".date("YmdHis",time());
+	} 
 	
 }

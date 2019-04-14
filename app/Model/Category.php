@@ -4,6 +4,11 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     //
+    const
+        USE_ABLE = 1,//可用
+        USE_DISABLE = 2,//不可用
+        ENS = TRUE;
+    
     protected $table = "jy_category";
 
     public $timestamps = false;

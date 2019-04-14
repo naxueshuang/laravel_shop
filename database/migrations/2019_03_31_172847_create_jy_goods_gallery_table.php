@@ -19,6 +19,7 @@ class CreateJyGoodsGalleryTable extends Migration
             $table->string('image_name',10)->default('')->comment('图片描述');
             $table->string('image_url',120)->default('')->comment('图片地址');
             // $table->timestamps();
+            $table->engine="innoDB";
         });
     }
 
