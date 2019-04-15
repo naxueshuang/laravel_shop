@@ -9,7 +9,7 @@ use App\Tools\ToolsAdmin;
 class Permissions extends Model
 {
     //指定表名
-    protected $table = "Permissions";
+    protected $table = "admin_permission";
 
     const 
     	IS_MENU = 1, //是菜单
@@ -25,6 +25,7 @@ class Permissions extends Model
     {
     	$permissions = self::select('id','fid','name','url')
     				->where('is_menu',self::IS_MENU)
+                    ->orderBy("id")
     				->orderBy('sort')
     				->get()
     				->toArray();

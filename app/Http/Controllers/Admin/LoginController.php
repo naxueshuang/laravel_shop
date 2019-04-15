@@ -41,6 +41,7 @@ class LoginController extends Controller
     		'msg'  => '登陆成功'
     	];
 
+
     	//用户名不能为空
     	if(!isset($params['username']) || empty($params['username'])){
 
@@ -63,8 +64,10 @@ class LoginController extends Controller
     		return json_encode($return);
     	}
 
+        $userInfo = AdminUsers::getUserByName($params['username']);
+
     	//通过用户名获取用户的信息
-    	$userInfo = AdminUsers::getUserByName($params['username']);
+    	// $userInfo = adminUsers::getUserByName($params['username']);
 
     	//用户不存在
     	if(empty($userInfo)){
@@ -89,6 +92,8 @@ class LoginController extends Controller
 
     			return json_encode($return);
     		}else{//密码正确, 执行登陆
+
+
 
     			$session = $request->session();//获取session对象
     			//存储用户id

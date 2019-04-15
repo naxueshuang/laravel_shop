@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class RolePermission extends Model
 {
     //
-    protected $table = "role_permissions";
+    protected $table = "admin_prerole";
 
     /**
      * 通过role_i删除角色权限的记录
@@ -22,7 +22,7 @@ class RolePermission extends Model
      */
     public function getPermissionByRoleId($roleId)
     {
-    	$data = self::select('p_id')
+    	$data = self::select('pre_id')
     	            ->where('role_id',$roleId)
     				->get()
     				->toArray();
@@ -30,7 +30,7 @@ class RolePermission extends Model
     	$pids = [];
 
     	foreach ($data as $key => $value) {
-    		$pids[] = $value['p_id'];
+    		$pids[] = $value['pre_id'];
     	}
 
     	return $pids;

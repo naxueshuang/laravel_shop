@@ -79,13 +79,13 @@ Route::prefix('study')->group(function(){
 
 
 //登陆页面
-Route::get('admin/login','Admin\LoginController@index');
+Route::get('/admin/login','Admin\LoginController@index');
 
 //执行登陆
-Route::post('admin/doLogin','Admin\LoginController@doLogin');
+Route::post('/admin/doLogin','Admin\LoginController@doLogin');
 
 //用户退出
-Route::get('admin/logout','Admin\LoginController@logout');
+Route::get('/admin/logout','Admin\LoginController@logout');
 
 
 Route::get('403',function(){

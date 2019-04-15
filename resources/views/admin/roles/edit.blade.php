@@ -35,7 +35,7 @@
             <div class="form-group">
               <label class="col-sm-3 control-label">角色名字</label>
               <div class="col-sm-6">
-                <input type="text" placeholder="角色名字" class="form-control" name="role_name" value="{{$role->role_name}}" />
+                <input type="text" placeholder="角色名字" class="form-control" name="rolename" value="{{$role->role_name}}" />
               </div>
             </div> 
             <div class="form-group">

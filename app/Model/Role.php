@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     //
-    protected $table = "role";
+    protected $table = "admin_role";
 
     /**
      * 获取所有的角色列表
