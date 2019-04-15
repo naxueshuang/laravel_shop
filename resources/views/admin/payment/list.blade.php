@@ -31,17 +31,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-danger" href="/admin/position/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($pay_list))
+                        @foreach($pay_list as $pay)
+                            <tr>
+                                <td>{{$pay['id']}}</td>
+                                <td>{{$pay['pay_name']}}</td>
+                                <td>{{$pay['pay_desc']}}</td>
+                                <td>{{$pay['pay_config']}}</td>
+                                <td>{{$pay['pay_order']}}</td>
+                                <td>{{$pay['status'] == 1 ? "可用" : "不可用"}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-warning" href="/admin/payment/edit/{{$pay['id']}}">编辑</a>
+                                    <a class="btn btn-sm btn-danger" href="/admin/payment/del/{{$pay['id']}}">删除</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

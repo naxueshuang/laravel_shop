@@ -1,11 +1,11 @@
 @extends('common.admin_base')
 
-@section('title','管理后台-支付方式添加')
+@section('title','管理后台-支付方式修改')
 
 <!--页面顶部信息-->
 @section('pageHeader')
     <div class="pageheader">
-        <h2><i class="fa fa-home"></i> 支付方式添加 <span>Subtitle goes here...</span></h2>
+        <h2><i class="fa fa-home"></i> 支付方式修改 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
         </div>
     </div>
@@ -29,42 +29,43 @@
                 <a href="" class="minimize">&minus;</a>
             </div>
 
-            <h4 class="panel-title">支付方式添加表单</h4>
+            <h4 class="panel-title">支付方式修改表单</h4>
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="/admin/payment/store" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/payment/save" method="post">
                 {{csrf_field()}}
+                <input type="hidden" name="id" value="{{$info['id']}}">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">支付名称</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="支付名称" class="form-control" name="pay_name" value="" />
+                        <input type="text" placeholder="支付名称" class="form-control" name="pay_name" value="{{$info['pay_name']}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">支付方式描述</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="pay_desc"></textarea>
+                        <textarea class="form-control" rows="3" name="pay_desc">{{$info['pay_desc']}}</textarea>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">支付配置</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" rows="3" name="pay_config" placeholder="key=>val|key1=>val2"></textarea>
+                        <textarea class="form-control" rows="3" name="pay_config" placeholder="key=>val|key1=>val2">{{$info['pay_config']}}</textarea>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">排序</label>
                     <div class="col-sm-6">
-                        <input type="text" placeholder="排序" class="form-control" name="pay_order" value="{{rand(1,100)}}" />
+                        <input type="text" placeholder="排序" class="form-control" name="pay_order" value="{{$info['pay_order']}}" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">状态</label>
                     <div class="col-sm-6">
-                        <div class="radio"><label><input type="radio" name="status" value="1" checked> 开启</label></div>
-                        <div class="radio"><label><input type="radio" name="status" value="2" >关闭</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="1" {{$info['status'] == 1 ? "checked" : ""}}> 开启</label></div>
+                        <div class="radio"><label><input type="radio" name="status" value="2" {{$info['status'] == 2 ? "checked" : ""}}>关闭</label></div>
                     </div>
                 </div>
                 <div class="panel-footer">
