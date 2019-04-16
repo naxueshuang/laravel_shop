@@ -23,8 +23,8 @@
                     <tr>
                         <th>ID</th>
                         <th>头像</th>
-                        <th>手机号</th>
                         <th>用户名</th>
+                        <th>手机号</th>
                         <th>账户积分</th>
                         <th>账户余额</th>
                         <th>用户状态</th>
@@ -34,21 +34,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td><img  style="width:60px;" src="/images/photos/media2.png"></td>
-                        <td>121321321</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-success" href="/admin/member/detail">查看详情
-                            </a>
-                        </td>
-                    </tr>
+                    @if(!empty($members))
+                        @foreach($members as $mem)
+                            <tr>
+                                <td>{{$mem->id}}</td>
+                                <td><img  style="width:60px;" src="{{$mem->image_url !="" ? $mem->image_url : '/images/photos/photo1.png'}}"></td>
+                                <td>{{$mem->username}}</td>
+                                <td>{{$mem->phone}}</td>
+                                <td>{{$mem->score}}</td>
+                                <td>{{$mem->balance}}</td>
+                                <td>{{$mem->status == 1 ? "激活" : "正常"}}</td>
+                                <td>{{$mem->email}}</td>
+                                <td>{{$mem->address_id}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-success" href="/admin/member/detail/{{$mem->id}}">查看详情
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

@@ -431,4 +431,12 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
 
 
      /*#############################[商品系统管理（支付，配送方式方式）相关]#############################*/
+
+     /*#############################[会员相关]#############################*/
+     //会员列表页面
+     Route::get('member/list','Admin\MemberController@list')->name('admin.member.list');
+
+      //会员详情
+     Route::get('member/detail/{id}','Admin\MemberController@detail')->name('admin.member.detail');
+     /*#############################[会员相关]#############################*/
 });
