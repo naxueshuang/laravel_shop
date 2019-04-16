@@ -9,5 +9,5 @@ class Shipping extends Model
     //配送方式表
     protected $table = "jy_shipping";
 
-    public $timestamp = false;
+    public $timestamps = false;
 }

@@ -30,16 +30,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-danger" href="/admin/position/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($shipping_list))
+                        @foreach($shipping_list as $ship)
+                            <tr>
+                                <td>{{$ship['id']}}</td>
+                                <td>{{$ship['shipping_name']}}</td>
+                                <td>{{$ship['shipping_desc']}}</td>
+                                <td>{{$ship['fee']}}</td>
+                                <td>{{$ship['status'] == 1 ? "可用" : "不可用"}}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-danger" href="/admin/shipping/del/{{$ship['id']}}">删除</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->

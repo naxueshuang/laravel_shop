@@ -405,17 +405,29 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
      //支付方式添加页面
      Route::get('payment/add','Admin\PaymentController@add')->name('admin.payment.add');
 
-     //执行添加
+     //支付方式执行添加
      Route::post('payment/store','Admin\PaymentController@store')->name('admin.payment.store');
 
-     //修改页面
+     //支付方式修改页面
      Route::get('payment/edit/{id}','Admin\PaymentController@edit')->name('admin.payment.edit');
 
-     //执行修改
+     //支付方式执行修改
      Route::post('payment/save','Admin\PaymentController@doEdit')->name('admin.payment.save');
 
-     //删除
+     //支付方式删除
       Route::get('payment/del/{id}','Admin\PaymentController@del')->name('admin.payment.del');
+
+      //配送方式列表
+      Route::get('shipping/list','Admin\ShippingController@list')->name('admin.shipping.list');
+
+      //配送方式添加.
+      Route::get('shipping/add','Admin\ShippingController@add')->name('admin.shipping.add');
+
+      //配送方式执行添加.
+      Route::post('shipping/store','Admin\ShippingController@store')->name('admin.shipping.store');
+
+      //配送方式删除.
+      Route::get('shipping/del/{id}','Admin\ShippingController@del')->name('admin.shipping.del');
 
 
      /*#############################[商品系统管理（支付，配送方式方式）相关]#############################*/
