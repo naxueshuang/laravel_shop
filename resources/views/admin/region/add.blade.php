@@ -18,7 +18,7 @@
             {{ session('msg') }}
         </div>
     @endif
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" id="alert-danger">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
         <span id="error_msg"></span>
     </div>
@@ -33,13 +33,17 @@
         </div>
         <div class="panel-body panel-body-nopadding">
 
-            <form class="form-horizontal form-bordered" action="" method="post">
+            <form class="form-horizontal form-bordered" action="/admin/region/store" method="post">
                 {{csrf_field()}}
                 <div class="form-group">
                     <label class="col-sm-3 control-label">上级地址</label>
                     <div class="col-sm-6">
-                        <select name="fid" class="form-control">
-                            <option>中国</option>
+                        <select name="p_id" class="form-control">
+                            @foreach($region_list as $region)
+                                <option value="{{$region['id']}}">
+                                    {{str_repeat('|-',$region['level'])}}{{$region['region_name']}}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

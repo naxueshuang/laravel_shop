@@ -429,6 +429,18 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
       //配送方式删除.
       Route::get('shipping/del/{id}','Admin\ShippingController@del')->name('admin.shipping.del');
 
+       /*############[地区相关]#############*/
+     //列表页面
+     Route::get('region/list/{fid?}','Admin\RegionController@list')->name('admin.region.list');
+
+      //添加页面
+     Route::get('region/add','Admin\RegionController@add')->name('admin.region.add');
+
+      //执行添加页面
+     Route::post('region/store','Admin\RegionController@store')->name('admin.region.store');
+
+     //删除
+     Route::get('region/del/{id}','Admin\RegionController@del')->name('admin.region.del');
 
      /*#############################[商品系统管理（支付，配送方式方式）相关]#############################*/
 
@@ -438,5 +450,9 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
 
       //会员详情
      Route::get('member/detail/{id}','Admin\MemberController@detail')->name('admin.member.detail');
+
      /*#############################[会员相关]#############################*/
+
+     
+     /*#############################[商品相关]#############################*/
 });

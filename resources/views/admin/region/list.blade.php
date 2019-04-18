@@ -8,7 +8,8 @@
     <div class="pageheader">
         <h2><i class="fa fa-home"></i> 地区列表 <span>Subtitle goes here...</span></h2>
         <div class="breadcrumb-wrapper">
-            <a class="btn btn-sm btn-danger" href="/admin/position/add">+ 添加广告位</a>
+        <a class="btn btn-sm btn-success" href="/admin/region/list">返回顶级</a>
+            <a class="btn btn-sm btn-danger" href="/admin/region/add">+ 添加地区</a>
         </div>
     </div>
 @endsection
@@ -28,16 +29,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-primary" href="/admin/region/list">子级</a>
-                            <a class="btn btn-sm btn-success" href="/admin/region/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger" href="/admin/region/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($region_list))
+                        @foreach($region_list as $region)
+                        <tr>
+                            <td>{{$region['id']}}</td>
+                            <td>{{$region['region_name']}}</td>
+                            <td>{{$region['level']}}</td>
+                            <td>
+                                <a class="btn btn-sm btn-primary" href="/admin/region/list/{{$region['id']}}">子级</a>
+                                <a class="btn btn-sm btn-success" href="/admin/region/edit/{{$region['id']}}">编辑</a>
+                                <a class="btn btn-sm btn-danger" href="/admin/region/del/{{$region['id']}}">删除</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->
