@@ -454,5 +454,34 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
      /*#############################[会员相关]#############################*/
 
      
-     /*#############################[商品相关]#############################*/
+     /*#############################[红包相关]#############################*/
+     //列表
+    Route::get('bonus/list','Admin\BonusController@list')->name('admin.bonus.list');
+
+     //添加页面
+    Route::get('bonus/add','Admin\BonusController@addBonus')->name('admin.bonus.add');
+
+     //红包执行
+    Route::post('bonus/store','Admin\BonusController@doAddBonus')->name('admin.bonus.store');
+
+    //编辑页面
+    Route::get('bonus/edit/{id}','Admin\BonusController@edit')->name('admin.bonus.edit');
+
+     //红包编辑执行
+    Route::post('bonus/save','Admin\BonusController@doEdit')->name('admin.bonus.save');
+
+    //删除
+    Route::get('bonus/del/{id}','Admin\BonusController@del')->name('admin.bonus.del');
+
+    //发送红包
+    Route::get('bonus/send/{bonus_id}','Admin\BonusController@sendBonus')->name('admin.bonus.send');
+
+    //执行发送红包
+    Route::post('bonus/doSend','Admin\BonusController@doSendBonus')->name('admin.bonus.doSend');
+
+    //发送红包
+    Route::get('/user/bonus/list','Admin\BonusController@userBonusList')->name('admin.user.bonus.list');
+
+
+      /*#############################[红包相关]#############################*/
 });

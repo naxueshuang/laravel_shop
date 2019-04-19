@@ -36,18 +36,18 @@
                 @if(!empty($bonus_list))
                  @foreach($bonus_list as $bonus)
                     <tr>
-                        <td>1</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
+                        <td>{{$bonus['id']}}</td>
+                        <td>{{$bonus['bonus_name']}}</td>
+                        <td>{{$bonus['money']}}</td>
+                        <td>{{$bonus['min_money']}}</td>
+                        <td>{{$bonus['expires']}}</td>
+                        <td>{{$bonus['send_start_time']}}</td>
+                        <td>{{$bonus['send_end_time']}}</td>
+                        <td>{{$bonus['status'] == 1 ? "可用" : "不可用"}}</td>
                         <td>
-                            <a class="btn btn-sm btn-warning" href="/admin/ad/edit">发红包</a>
-                            <a class="btn btn-sm btn-success" href="/admin/ad/edit">编辑</a>
-                            <a class="btn btn-sm btn-danger">删除</a>
+                            <a class="btn btn-sm btn-warning" href="/admin/bonus/send/{{$bonus['id']}}">发红包</a>
+                            <a class="btn btn-sm btn-success" href="/admin/bonus/edit/{{$bonus['id']}}">编辑</a>
+                            <a class="btn btn-sm btn-danger" href="/admin/bonus/del/{{$bonus['id']}}">删除</a>
                         </td>
                     </tr>
                  @endforeach

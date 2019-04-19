@@ -29,19 +29,22 @@
                     </tr>
                     </thead>
                     <tbody>
-                
-                    <tr>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                    </tr>
-                 
+                    @if(!empty($user_bonus))
+                        @foreach($user_bonus as $user)
+                            <tr>
+                                <td>{{$user->id}}</td>
+                                <td>{{$user->username}}</td>
+                                <td>{{$user->phone}}</td>
+                                <td>{{$user->bonus_name}}#</td>
+                                <td>{{$user->start_time}}</td>
+                                <td>{{$user->end_time}}</td>
+                                <td>@if($user->status == 1) 未使用 @elseif($user->status == 2) 已使用 @else 已过期 @endif</td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
+                {{$user_bonus->links()}}
             </div><!-- table-responsive -->
         </div>
     </div>
