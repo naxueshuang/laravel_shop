@@ -30,22 +30,56 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>SN_122112121221</td>
-                        <td>暖怀－白18K金钻石戒指</td>
-                        <td>ECS000141</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>
-                            <a class="btn btn-sm btn-success" href="/admin/order/detail">详情</a>
-                            <a class="btn btn-sm btn-danger" href="/admin/goods/del">删除</a>
-                        </td>
-                    </tr>
+                    @if(!empty($order_list))
+                        @foreach($order_list as $order)
+                            <tr>
+                                <td>{{$order->order_sn}}</td>
+                                <td>{{$order->created_at}}</td>
+                                <td>{{$order->consignee}}</td>
+                                <td>{{$order->pay_price}}</td>
+                                <td>{{$order->paid_price}}</td>
+                                <td>{{$order->bonus_price}}</td>
+                                <td>{{$order->pay_time}}</td>
+                                <td>
+                                    @if($order->order_status == 1)
+                                        未确认
+                                    @elseif($order->order_status == 2)
+                                        已确认
+                                    @elseif($order->order_status == 3)
+                                        取消
+                                    @else
+                                        退货
+                                    @endif
+                                    &nbsp;
+                                    @if($order->shipping_status == 1)
+                                        待发货
+                                    @elseif($order->shipping_status == 2)
+                                        已发货
+                                    @elseif($order->shipping_status == 3)
+                                        未发货
+                                    @else
+                                        退货
+                                    @endif
+                                    &nbsp;
+                                    @if($order->pay_status == 1)
+                                        未支付
+                                    @elseif($order->pay_status == 2)
+                                        已支付
+                                    @else
+                                        支付成功
+                                    @endif
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-sm btn-success" href="/admin/order/detail/{{$order->id}}">详情</a>
+                                    <!-- <a class="btn btn-sm btn-danger" href="/admin/order/del">删除</a> -->
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
+                {{$order_list->links()}}
             </div><!-- table-responsive -->
         </div>
     </div>

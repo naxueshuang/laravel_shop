@@ -145,12 +145,12 @@
       </div>
 
       <!-- ECharts单文件引入 -->
-    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script src="/js/echarts-2.2.7/build/dist/echarts.js"></script>
     <script type="text/javascript">
         // 路径配置
         require.config({
             paths: {
-                echarts: 'http://echarts.baidu.com/build/dist'
+                echarts: '/js/echarts-2.2.7/build/dist'
             }
         });
         
@@ -188,7 +188,7 @@
                               mark : {show: false},
                               dataView : {show: true, readOnly: false},
                               magicType : {
-                                  show: true, 
+                                  show: false, 
                                   type: ['pie', 'funnel'],
                                   option: {
                                       funnel: {

@@ -11,6 +11,6 @@ class HomeController extends Controller
     //后台首页
     public function home()
     {
-    	return view('admin.home');
+    	return view('admin.home.home');
     }
 }

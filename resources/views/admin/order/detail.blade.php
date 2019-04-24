@@ -46,64 +46,92 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label">订单号</label>
                     <div class="col-sm-4">
-                        <label class="control-label">Jysdsdssdsdsd</label>
+                        <label class="control-label">{{$order->order_sn}}</label>
                     </div>
                     <label class="col-sm-2 control-label">订单状态</label>
                     <div class="col-sm-4">
-                        <label class="control-label">未付款 未发货 未确认</label>
+                        <label class="control-label">
+                        @if($order->order_status == 1)
+                            未确认
+                            @elseif($order->order_status == 2)
+                                已确认
+                            @elseif($order->order_status == 3)
+                                取消
+                            @else
+                                退货
+                        @endif
+                        &nbsp;
+                        @if($order->shipping_status == 1)
+                                待发货
+                            @elseif($order->shipping_status == 2)
+                                已发货
+                            @elseif($order->shipping_status == 3)
+                                未发货
+                            @else
+                                退货
+                        @endif
+                        &nbsp;
+                        @if($order->pay_status == 1)
+                            未支付
+                            @elseif($order->pay_status == 2)
+                                已支付
+                            @else
+                                支付成功
+                        @endif
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">购货人</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$member->username}}</label>
                     </div>
                     <label class="col-sm-2 control-label">下单时间</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->created_at}}</label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">配送方式</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->shipping_name}}</label>
                     </div>
                     <label class="col-sm-2 control-label">支付方式</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->pay_name}}</label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">确认时间</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->confirm_time}}</label>
                     </div>
                     <label class="col-sm-2 control-label">支付时间</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->pay_time}}</label>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-2 control-label">收货人</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->consignee}}</label>
                     </div>
                     <label class="col-sm-2 control-label">收货人手机号</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->phone}}</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label">收货人地址</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$country}} {{$province}} {{$city}} {{$district}} {{$order->address}}</label>
                     </div>
                     <label class="col-sm-2 control-label">收货人编码</label>
                     <div class="col-sm-4">
-                        <label class="control-label">###</label>
+                        <label class="control-label">{{$order->zipcode}}</label>
                     </div>
                 </div>
         </div>
@@ -116,24 +144,24 @@
                     <thead>
                     <tr>
                         <th>商品名称</th>
-                        <th>货号</th>
                         <th>价格</th>
                         <th>数量</th>
                         <th>属性</th>
-                        <th>库存</th>
                         <th>小计</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>SN_122112121221</td>
-                        <td>暖怀－白18K金钻石戒指</td>
-                        <td>ECS000141</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                        <td>##</td>
-                    </tr>
+                    @if(!empty($order_goods))
+                        @foreach($order_goods as $goods)
+                            <tr>
+                                <td>{{$goods['goods_name']}}</td>
+                                <td>{{$goods['market_price']}}</td>
+                                <td>{{$goods['goods_num']}}</td>
+                                <td>{{$goods['goods_attr']}}</td>
+                                <td>{{$goods['market_price'] * $goods['goods_num']}}</td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div><!-- table-responsive -->
@@ -145,43 +173,35 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">商品总金额</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->goods_price}}</label>
                         </div>
                         <label class="col-sm-2 control-label">配送费</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->shipping_fee}}</label>
                         </div>
                    </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">支付总金额</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->pay_price}}</label>
                         </div>
                         <label class="col-sm-2 control-label">已支付金额</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->pay_price}}</label>
                         </div>
                    </div>
                    <div class="form-group">
                         <label class="col-sm-2 control-label">红包金额</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->bonus_price}}</label>
                         </div>
                         <label class="col-sm-2 control-label">备注</label>
                         <div class="col-sm-4">
-                            <label class="control-label">###</label>
+                            <label class="control-label">{{$order->note}}</label>
                         </div>
                    </div>
             </div><!-- panel-body -->
         <!--商品相册-->
-
-        <div class="panel-footer">
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <button class="btn btn-primary btn-danger" id="btn-save">保存商品</button>&nbsp;
-                        </div>
-                    </div>
-        </div><!-- panel-footer -->
         </form>
     </div>
 </div>
