@@ -9,6 +9,8 @@ class Member extends Model
     //
     protected $table = "jy_user";
 
+    public $timestamps = true;
+
     //获取详情
     public function getInfo($id)
     {

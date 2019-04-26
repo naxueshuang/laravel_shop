@@ -29,7 +29,7 @@
                   </div>
                   <div class="col-xs-8">
                     <small class="stat-label">会员总数</small>
-                    <h1>900k+</h1>
+                    <h1>{{$member_nums}}</h1>
                   </div>
                 </div><!-- row -->
 
@@ -38,12 +38,12 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <small class="stat-label">今日注册</small>
-                    <h4>7.80</h4>
+                    <h4>{{$today_register_nums}}</h4>
                   </div>
 
                   <div class="col-xs-6">
                     <small class="stat-label">近一周注册</small>
-                    <h4>76.43%</h4>
+                    <h4>{{$last_week_register}}</h4>
                   </div>
                 </div><!-- row -->
               </div><!-- stat -->
@@ -63,7 +63,7 @@
                   </div>
                   <div class="col-xs-8">
                     <small class="stat-label">订单总数</small>
-                    <h1>90K+</h1>
+                    <h1>{{$order_nums}}</h1>
                   </div>
                 </div><!-- row -->
 
@@ -72,12 +72,12 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <small class="stat-label">今日订单总数</small>
-                    <h4>7.80</h4>
+                    <h4>{{$today_order_nums}}</h4>
                   </div>
 
                   <div class="col-xs-6">
                     <small class="stat-label">近一周订单总数</small>
-                    <h4>76.43%</h4>
+                    <h4>{{$last_week_order}}</h4>
                   </div>
                 </div><!-- row -->
               </div><!-- stat -->
@@ -97,7 +97,7 @@
                   </div>
                   <div class="col-xs-8">
                     <small class="stat-label">商品总数</small>
-                    <h1>90K+</h1>
+                    <h1>{{$goods_nums}}</h1>
                   </div>
                 </div><!-- row -->
 
@@ -106,12 +106,12 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <small class="stat-label">今日商品</small>
-                    <h4>7.80</h4>
+                    <h4>{{$today_goods_nums}}</h4>
                   </div>
 
                   <div class="col-xs-6">
                     <small class="stat-label">近一周商品</small>
-                    <h4>76.43%</h4>
+                    <h4>{{$last_goods_order}}</h4>
                   </div>
                 </div><!-- row -->
               </div><!-- stat -->
@@ -270,7 +270,8 @@
                         xAxis : [
                             {
                                 type : 'category',
-                                data : ['2019-04-08','2019-04-09','2019-04-10','2019-04-11','2019-04-12','2019-04-13','2019-04-14']
+                                // data : ['2019-04-08','2019-04-09','2019-04-10','2019-04-11','2019-04-12','2019-04-13','2019-04-14']
+                                data : [<?php echo $register_date; ?>]
                             }
                         ],
                         yAxis : [
@@ -282,7 +283,7 @@
                             {
                                 name:'用户注册量',
                                 type:'bar',
-                                data:[100, 90, 40, 50, 99, 104, 301],
+                                data:[<?php echo $register_nums; ?>],
                                 markPoint : {
                                     data : [
                                         {type : 'max', name: '最大值'},
