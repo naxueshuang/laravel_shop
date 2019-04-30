@@ -56,6 +56,14 @@ class Controller extends BaseController
         return $object->insert($params);
     }
 
+    //通过where条件查询记录
+    public function getDataInfoByWhere($object,$where=[])
+    {
+        $info = $object->where($where)->first();
+
+        return $info;
+    }
+
     //获取属性 执行修改的操作
     public function getDataInfo($object,$id,$key="id")
     {

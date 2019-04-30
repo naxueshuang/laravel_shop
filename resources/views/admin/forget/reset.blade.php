@@ -33,10 +33,6 @@
                         {{ session('msg') }}
                     </div>
                 @endif
-                <div :class="'alert '+error_class" v-if="error_show">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    {error_msg}
-                </div>
                 <form id="reset" method="post" action="/admin/reset/password/save" >
                     {{ csrf_field() }}
                     <h4 class="nomargin">重置密码</h4>
@@ -46,10 +42,11 @@
                     <input type="password" name="password" class="form-control" placeholder="请输入新密码" />
                     <input type="password" name="confirm_password" class="form-control" placeholder="确认新密码" />
 
-                </form>
+                
                     <button class="btn btn-primary btn-block login" @click="resetPwd">重置密码</button>
-            </div><!-- col-sm-5 -->
-            <div class="col-md-2" >&nbsp;</div>
+                    </div><!-- col-sm-5 -->
+                    <div class="col-md-2" >&nbsp;</div>
+            </form>
 
         </div><!-- row -->
 
@@ -62,8 +59,6 @@
     </div><!-- signin -->
 
 </section>
-<script src="/js/vue/vue.js"></script>
-<script src="/js/vue/base.js"></script>
-<script src="/js/vue/forget.js"></script>
+<script src="/js/vue.js"></script>
 </body>
 </html>

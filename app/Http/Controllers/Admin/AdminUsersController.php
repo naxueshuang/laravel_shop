@@ -19,9 +19,12 @@ class AdminUsersController extends Controller
     /**
      *用户添加页面
      */
+
     public function create()
     {
     	$role = new Role();
+
+        echo md5(123123);exit;
 
     	$assign['roles'] = $role->getRoles();//获取角色列表
 
@@ -185,6 +188,46 @@ class AdminUsersController extends Controller
     	}
 
     	return redirect("/admin/user/list");
+    }
+
+    //修改密码页面
+    public function password()
+    {
+        return view('admin.users.password');
+    }
+
+    //执行修改
+    public function updatePwd(Request $request)
+    {
+        $params = $request->all();
+
+        //检验旧密码是否真确
+
+        $adminUsers = new AdminUsers();
+
+        $data = $this->getDataInfo($adminUsers, $params['id']);
+
+        // dd($data);
+
+        if($data->password != md5($params['old_password'])){
+
+            return redirect()->back()->with('msg','原密码错误');
+        }
+        $datas = [
+            'password' => md5($params['password'])
+        ];
+        $adminUser1 = AdminUsers::find($params['id']);
+
+        $res = $this->storeData($adminUser1,$datas);
+
+        if(!$res){
+            
+            return redirect()->back()->with('msg','密码修改失败');
+        }
+
+        return redirect('/admin/user/list');
+        // dd($data);
+
     }
 
 }

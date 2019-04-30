@@ -63,8 +63,83 @@
     </div><!-- signin -->
 
 </section>
-<script src="/js/vue/vue.js"></script>
-<script src="/js/vue/base.js"></script>
-<script src="/js/vue/forget.js"></script>
+<script src="/js/vue.js"></script>
+
+<script type="text/javascript">
+    var forget = new Vue({
+            el: "#forget",
+            delimiters: ['{','}'],
+            data: {
+                error_show: false,
+                error_msg: "",
+                error_class: "alert-danger",
+                sending: 1,//1发送邮件 2、发送中 3、发送成功 4、发送失败
+            },
+            methods:{
+                //发送邮件
+                sendEmail: function () {
+                    var email = $("input[name=email]").val();
+                    var token = $("input[name=_token]").val();
+                    var username = $("input[name=username]").val();
+                    var that = this;
+                    if(email == ''){
+                        this.error_show = true;
+                        this.error_msg = "邮箱地址不能为空,请输入邮箱地址";
+                        return false;
+                    }
+                    if(username == ''){
+                        this.error_show = true;
+                        this.error_msg = "用户名不能为空,请输入邮箱地址";
+                        return false;
+                    }
+                    var url = "/admin/forget/sendEmail";
+                    this.sending= 2;
+                    $.ajax({
+                        url:url,
+                        type: "post",
+                        data:{_token:token,email: email,username:username},
+                        dataType: "json",
+                        success: function(res){
+                            if(res.code == 2000){
+                                that.sending = 3;
+                                that.error_show = true;
+                                that.error_msg = "邮件发送成功";
+                                that.error_class = "alert-success";
+                            }else{
+                                that.sending = 4;
+                                that.error_show = true;
+                                that.error_msg = res.msg;
+                                that.error_class = "alert-danger";
+                            }
+                        }
+                    })
+                },
+                //重置密码
+                resetPwd: function () {
+                    var password = $("input[name=password]").val();
+                    var confirm = $("input[name=confirm_password]").val();
+                    var that = this;
+                    if(password == ''){
+                        this.error_show = true;
+                        this.error_msg = "密码不能为空";
+                        return false;
+                    }
+                    var res = windows.checkPasswordRule(password);
+                    if(!res){
+                        this.error_show = true;
+                        this.error_msg = "密码格式:8~20位同时包含数字和大小写字母";
+                        return false;
+                    }
+                    if(password != confirm){
+                        this.error_show = true;
+                        this.error_msg = "密码和确认密码不一致";
+                        return false;
+                    }
+                    this.error_show = false;
+                    $("#reset").submit();
+                }
+            }
+});
+</script>zw
 </body>
 </html>
