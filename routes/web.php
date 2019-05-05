@@ -377,6 +377,9 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
     //商品列表
      Route::get('goods/list','Admin\GoodsController@list')->name('admin.goods.list');
 
+     //商品属性即点即改
+     Route::post('goods/change/attr','Admin\GoodsController@changeAttr')->name('admin.goods.change.attr');
+
      //商品数据接口数据
      Route::any('goods/data/list','Admin\GoodsController@getGoodsData')->name('admin.goods.data.list');
 
@@ -414,6 +417,8 @@ Route::middleware(['admin_auth','permission_auth'])->prefix('admin')->group(func
      Route::any('goods/attr/value/{id}','Admin\GoodsSkuController@getAttrValues')->name('admin.goods.attr.value');
      
      Route::any('goods/sku/list/bind/{goods_id}','Admin\GoodsSkuController@getSkuList')->name('admin.goods.sku.list.bind');
+
+
 
 
      /*#############################[商品相关]#############################*/

@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Tools\ToolsEmail;
 
 class SendEmail extends Command
 {
@@ -38,5 +39,12 @@ class SendEmail extends Command
     public function handle()
     {
         //
+        $emailData = [
+            'subject' => "测试发邮件",
+            'content' => "测试laravel的任务调度控制台",
+            'email_address' => "august1022@163.com"
+        ];
+
+        ToolsEmail::sendEmail($emailData);
     }
 }

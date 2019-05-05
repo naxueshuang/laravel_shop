@@ -39,6 +39,7 @@ class GoodsController extends Controller
     public function changeAttr(Request $request)
     {
     	$params = $request->all();
+        // dd($params);
     	$return = [
     		'code' => 2000,
     		'msg'  => '修改商品属性成功'
